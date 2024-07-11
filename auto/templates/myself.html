@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Profile</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 300px;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #7FFFD4, 0 0 20px #7FFFD4, 0 0 30px #7FFFD4, 0 0 40px #7FFFD4; }
+            to { box-shadow: 0 0 20px #7FFFD4, 0 0 30px #7FFFD4, 0 0 40px #7FFFD4, 0 0 50px #7FFFD4; }
+        }
+
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .social-icons a {
+            margin: 0 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover img {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% load static %}
+        <img src="{% static 'my.jpeg'%}" alt="My Photo" class="profile-pic">
+        <h1>DjangoDynamo</h1>
+        <p>Connect with me on social media!</p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com/in/harshad-dudhabarve-3709302a1/" target="_blank">
+                <img src="https://cdn.freebiesupply.com/logos/large/2x/linkedin-icon-logo-png-transparent.png" alt="LinkedIn">
+            </a>
+            <a href="https://www.instagram.com/curious_coder3/?hl=en" target="_blank">
+                <img src="https://www.nicepng.com/png/full/432-4329510_instagram-logo-logos-de-redes-sociales-instagram.png" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/vishal.dudhabarve.31" target="_blank">
+                <img src="https://th.bing.com/th/id/OIP.d9GZxbX8Gi9_qGg7XP1ntgHaHa?rs=1&pid=ImgDetMain" alt="Facebook">
+            </a>
+            <a href="https://github.com/nota63" target="_blank">
+                <img src="https://cdn4.iconfinder.com/data/icons/social-media-and-logos-11/32/Logo_Github-1024.png" alt="GitHub">
+            </a>
+            <a href="https://wa.me/9022216598" target="_blank">
+                <img src="https://th.bing.com/th/id/R.35ffa6e353468280a59e5b4672b8aba0?rik=e5Y6Je9zOSfWrg&riu=http%3a%2f%2flofrev.net%2fwp-content%2fphotos%2f2016%2f06%2fwhatsApp-logo-1.png&ehk=2kmD9AQIuBNDDrrdprGXc3ua6fK6W8wJ%2fiV0VbQhDsI%3d&risl=&pid=ImgRaw&r=0" alt="WhatsApp">
+            </a>
+        </div>
+    </div>
+    <br>
+
+    <a href="{% url 'main' %}">
+        <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30">
+    </a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script>
+        // GSAP animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fade in and scale up animation for the container
+            gsap.fromTo('.container', { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out' });
+
+            // Hover animation for social icons
+            const icons = document.querySelectorAll('.social-icons a');
+            icons.forEach(icon => {
+                icon.addEventListener('mouseenter', () => {
+                    gsap.to(icon.querySelector('img'), { scale: 1.1, duration: 0.3 });
+                });
+                icon.addEventListener('mouseleave', () => {
+                    gsap.to(icon.querySelector('img'), { scale: 1, duration: 0.3 });
+                });
+            });
+        });
+    </script>
+</body>
+</html>

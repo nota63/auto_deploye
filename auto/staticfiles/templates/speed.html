@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Internet Speed Test Results</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #fafafa;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333; /* Text color */
+        }
+        .card {
+            background-color: #fff; /* White background */
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+            width: 80%;
+            max-width: 500px;
+            padding: 20px;
+            margin: 20px 0;
+            opacity: 0; /* Initially hidden for animation */
+            transform: translateY(20px); /* Initially move down for animation */
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .card-title {
+            font-size: 24px;
+            font-weight: 500;
+            color: #03DAC6; /* Accent color for title */
+        }
+        .card-body {
+            margin-top: 20px;
+        }
+        .result {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #333; /* Text color */
+        }
+        .error {
+            color: #F44336; /* Primary color for errors */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="card-header">
+            <span class="card-title">Internet Speed Test Results</span>
+            {% if error %}
+                <span class="error">{{ error }}</span>
+            {% endif %}
+        </div>
+        <div class="card-body">
+            {% if not error %}
+                <div class="result">
+                    <strong>Download Speed:</strong> {{ speed_data.download_speed }} Mbps
+                </div>
+                <div class="result">
+                    <strong>Upload Speed:</strong> {{ speed_data.upload_speed }} Mbps
+                </div>
+                <div class="result">
+                    <strong>Ping:</strong> {{ speed_data.ping }} ms
+                </div>
+                <div class="result">
+                    <strong>Server:</strong> {{ speed_data.server }}
+                </div>
+                <div class="result">
+                    <strong>ISP:</strong> {{ speed_data.isp }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+    <br>
+    <a href="{% url 'main' %}">
+        <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30">
+    </a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script>
+        // GSAP animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fade in card
+            gsap.fromTo('.card', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+
+            // Card hover effect
+            const card = document.querySelector('.card');
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, { scale: 1.02, duration: 0.2 });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, { scale: 1, duration: 0.2 });
+            });
+
+            // Image hover effect
+            const image = document.querySelector('a img');
+            image.addEventListener('mouseenter', () => {
+                gsap.to(image, { rotate: 360, duration: 1 });
+            });
+            image.addEventListener('mouseleave', () => {
+                gsap.to(image, { rotate: 0, duration: 1 });
+            });
+        });
+    </script>
+</body>
+</html>

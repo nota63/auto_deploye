@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send WhatsApp Image</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0; /* Light gray background */
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px; /* Maximum width for the form container */
+            padding: 20px;
+            background-color: #fff; /* White background for the form container */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+            text-align: center; /* Center text inside the container */
+        }
+
+        h1 {
+            color: #333; /* Dark gray text */
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+            color: #333; /* Dark gray text */
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF; /* Blue background */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-out;
+        }
+
+        button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        p {
+            font-size: 1rem;
+        }
+
+        .message {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .back-link img {
+            height: 30px;
+            transition: transform 0.3s ease-out;
+        }
+
+        .back-link:hover img {
+            transform: scale(1.1); /* Scale up image on hover */
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Send Image on WhatsApp</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <label for="contact">Contact Number (with country code):</label>
+            <input type="text" id="contact" name="contact" required><br>
+
+            <label for="image_path">Image Path:</label>
+            <input type="text" id="image_path" name="image_path" required><br>
+
+            <label for="caption">Caption:</label>
+            <input type="text" id="caption" name="caption"><br>
+
+            <button type="submit">Send Image</button>
+        </form>
+
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <br>
+        <a class="back-link" href="{% url 'main' %}">
+            <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30" alt="Back">
+        </a>
+    </div>
+
+    <script>
+        // GSAP animations
+        gsap.from(".container", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            ease: "power3.out"
+        });
+
+        gsap.from("h1", {
+            duration: 1,
+            opacity: 0,
+            y: -50,
+            delay: 0.5,
+            ease: "power3.out"
+        });
+
+        gsap.from("form", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            delay: 1,
+            ease: "power3.out"
+        });
+
+        gsap.from("input, button", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            delay: 1.5,
+            ease: "power3.out",
+            stagger: 0.2
+        });
+
+        gsap.from(".back-link", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            delay: 2,
+            ease: "power3.out"
+        });
+    </script>
+</body>
+</html>

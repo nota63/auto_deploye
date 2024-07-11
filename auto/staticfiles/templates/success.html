@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #FFA07C, #FFC371); /* Linear gradient background */
+            color: #333; /* Text color */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            width: 250px;
+            height: 250px;
+            box-sizing: border-box;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 10px #7FFFD4, 0 0 20px #7FFFD4, 0 0 30px #7FFFD4, 0 0 40px #7FFFD4; }
+            to { box-shadow: 0 0 20px #7FFFD4, 0 0 30px #7FFFD4, 0 0 40px #7FFFD4, 0 0 50px #7FFFD4; }
+        }
+        h1 {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        p {
+            font-size: 10px;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+        li {
+            background-color: #fff;
+            padding: 5px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            opacity: 0; /* Initially hidden for animation */
+            transform: translateX(-50px); /* Initial position for animation */
+            font-size: 10px;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+        }
+        img {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+            height: 20px;
+        }
+        a:hover img {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Process Done As Expected✔</h1>
+
+        <p>Warning: The data will be erased after restart or adding a new target, but the task will remain!</p>
+        <p>So don't worry, your work will be accomplished on time even after a reset of data.</p>
+
+        <h2>Pending Birthdays To Wish</h2>
+
+        <ul>
+            {% for key, value in session_data.items %}
+                <li><strong>{{ key }}:</strong> {{ value }}</li>
+            {% endfor %}
+        </ul>
+
+        <a href="{% url 'main' %}">
+            <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" alt="Home">
+        </a>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fade in and slide in animations
+            gsap.fromTo('h1', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+            gsap.fromTo('p', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 0.5 });
+            gsap.fromTo('h2', { opacity: 0, y: -20 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out', delay: 1 });
+
+            // Staggered slide in for list items
+            gsap.to('li', { opacity: 1, x: 0, duration: 0.5, ease: 'power3.out', stagger: 0.2, delay: 1.5 });
+        });
+    </script>
+</body>
+</html>

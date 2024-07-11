@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>Project Automation</h1>
+
+
+        <div class="app-drawer">
+            <section class="app-item">
+                <a href="{% url 'google' %}">
+                    <img src="https://professortec.com/wp-content/uploads/2024/01/image-11.png">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'birthday' %}">
+                    <img src="https://seotechnews.com/wp-content/uploads/2022/12/Schedule-Whatsapp-Messages-On-Android-and-iPhone.webp">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'youtube' %}">
+                    <img src="https://th.bing.com/th/id/OIP.MRvxr-7G1RxuH_bj1Eoj8wHaHa?rs=1&pid=ImgDetMain">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'info' %}">
+                    <img src="https://images.freeimages.com/images/large-previews/f40/info-icon-4-1444443.jpg">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'email' %}">
+                    <img src="https://th.bing.com/th/id/OIP.F5rUC9-rmgPqg-ym9x-BZAHaHa?rs=1&pid=ImgDetMain">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'shutdown' %}">
+                    <img src="https://www.shutterstock.com/image-vector/shut-down-button-260nw-576549088.jpg">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'system_info' %}">
+                    <img src="https://www.nicepng.com/png/detail/901-9019690_download-icons-windows-linux-android-mac-svg-eps.png">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'speed' %}">
+                    <img src="https://th.bing.com/th/id/OIP.yjRm_TEmJeYt97kmxfnkngAAAA?rs=1&pid=ImgDetMain">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'image' %}">
+                    <img src="https://th.bing.com/th/id/OIP.z8X269qVNNMX1SBB9MvGOAHaHa?rs=1&pid=ImgDetMain">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'text_to_handwriting' %}">
+                    <img src="https://designshack.net/wp-content/uploads/Delich-Handwritten-Script-Font.jpg">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'whatsapp_image' %}">
+                    <img src="https://th.bing.com/th/id/OIP.zQI1rlQPo77vP33G_hjfmAAAAA?rs=1&pid=ImgDetMain">
+                </a>
+            </section>
+
+            <section class="app-item">
+                <a href="{% url 'multi_whatsapp' %}">
+                    <img src="https://th.bing.com/th/id/OIP.-8PzLGMl8spwz5NSZKQlmwHaHa?rs=1&pid=ImgDetMain">
+                </a>
+            </section>
+        </div>
+    </div>
+ <script>
+        gsap.from(".app-item", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+    </script>
+</body>
+</html>

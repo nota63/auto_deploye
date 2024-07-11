@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shutdown</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(to right, #e0e7ff, #cfdefc); /* Background gradient */
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Hide overflow to prevent scrollbars */
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            border-radius: 15px; /* Rounded corners */
+            padding: 20px;
+            max-width: 400px;
+            width: 90%; /* Adjust based on your preference */
+            opacity: 0; /* Initially hidden for animation */
+            transform: translateY(20px); /* Initially move down for animation */
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #666;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            margin-bottom: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(to right, #ff79c6, #a65df1); /* Gradient background */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s ease, transform 0.3s ease; /* Transition for hover effect */
+        }
+
+        button:hover {
+            background: linear-gradient(to right, #ff92d0, #c471ed); /* Darker gradient on hover */
+            transform: scale(1.05); /* Slightly enlarge button on hover */
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        a img {
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Shutdown The System</h1>
+        <p>Schedule Your time to shutdown the system in seconds format</p>
+
+        <form method="post">
+            {% csrf_token %}
+            <input type="text" name="sec" placeholder="seconds to shutdown the system" required>
+            <button type="submit">Shutdown</button>
+        </form>
+    </div>
+
+    <a href="{% url 'main' %}">
+        <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30">
+    </a>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script>
+        // GSAP animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fade in container
+            gsap.fromTo('.container', { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 1, ease: 'power3.out' });
+
+            // Button hover effect
+            const button = document.querySelector('button');
+            button.addEventListener('mouseenter', () => {
+                gsap.to(button, { scale: 1.05, duration: 0.3, ease: 'power3.out' });
+            });
+            button.addEventListener('mouseleave', () => {
+                gsap.to(button, { scale: 1, duration: 0.3, ease: 'power3.out' });
+            });
+
+            // Image hover effect
+            const image = document.querySelector('a img');
+            image.addEventListener('mouseenter', () => {
+                gsap.to(image, { rotate: 360, duration: 1 });
+            });
+            image.addEventListener('mouseleave', () => {
+                gsap.to(image, { rotate: 0, duration: 1 });
+            });
+        });
+    </script>
+</body>
+</html>

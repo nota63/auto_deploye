@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>System Information</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .box {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: calc(33.333% - 40px);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .box:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        a {
+            display: block;
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        a img {
+            filter: grayscale(100%);
+            transition: filter 0.3s ease, transform 0.3s ease;
+        }
+
+        a:hover img {
+            filter: grayscale(0);
+            transform: scale(1.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f5f5f5;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+</head>
+<body>
+    <h1>System Information</h1>
+
+    <div class="container">
+        <div class="box">
+            <h2>CPU Information</h2>
+            <p>Logical CPUs: {{ system_info.cpu_count_logical }}</p>
+            <p>Physical CPUs: {{ system_info.cpu_count_physical }}</p>
+            <p>CPU Usage: {{ system_info.cpu_usage }}%</p>
+            <p>CPU Times: {{ system_info.cpu_times }}</p>
+        </div>
+        <div class="box">
+            <h2>Memory Information</h2>
+            <p>Total Memory: {{ system_info.total_memory }} GB</p>
+            <p>Available Memory: {{ system_info.available_memory }} GB</p>
+            <p>Used Memory: {{ system_info.used_memory }} GB</p>
+            <p>Memory Usage: {{ system_info.memory_usage }}%</p>
+            <p>Total Swap: {{ system_info.total_swap }} GB</p>
+            <p>Used Swap: {{ system_info.used_swap }} GB</p>
+            <p>Free Swap: {{ system_info.free_swap }} GB</p>
+            <p>Swap Usage: {{ system_info.swap_usage }}%</p>
+        </div>
+        <div class="box">
+            <h2>Disk Information</h2>
+            <p>Device: {{ system_info.disk_info.device }}</p>
+            <p>Mountpoint: {{ system_info.disk_info.mountpoint }}</p>
+            <p>File system type: {{ system_info.disk_info.fstype }}</p>
+            <p>Total: {{ system_info.disk_info.total }} GB</p>
+            <p>Used: {{ system_info.disk_info.used }} GB</p>
+            <p>Free: {{ system_info.disk_info.free }} GB</p>
+            <p>Usage: {{ system_info.disk_info.percent }}%</p>
+        </div>
+        <div class="box">
+            <h2>Network Information</h2>
+            <p>Hostname: {{ system_info.hostname }}</p>
+            <p>IP Address: {{ system_info.ip_address }}</p>
+            <p>Interface: {{ system_info.network_info.interface }}</p>
+            <p>Address: {{ system_info.network_info.address }}</p>
+            <p>Netmask: {{ system_info.network_info.netmask }}</p>
+            <p>Broadcast: {{ system_info.network_info.broadcast }}</p>
+        </div>
+        <div class="box">
+            <h2>System Information</h2>
+            <p>Platform: {{ system_info.platform }}</p>
+            <p>Platform Version: {{ system_info.platform_version }}</p>
+            <p>Platform Release: {{ system_info.platform_release }}</p>
+            <p>Architecture: {{ system_info.architecture }}</p>
+            <p>Processor: {{ system_info.processor }}</p>
+        </div>
+        <div class="box">
+            <h2>Python Version</h2>
+            <p>{{ system_info.python_version }}</p>
+        </div>
+        <div class="box">
+            <h2>Process Information</h2>
+            <table>
+                <tr>
+                    <th>PID</th>
+                    <th>Name</th>
+                    <th>User</th>
+                </tr>
+                <tr>
+                    <td>{{ process_info.pid }}</td>
+                    <td>{{ process_info.name }}</td>
+                    <td>{{ process_info.username }}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <a href="{% url 'main' %}">
+        <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30">
+    </a>
+
+    <script>
+        // GSAP animations
+        gsap.from("h1", {
+            duration: 1,
+            opacity: 0,
+            y: -50,
+            ease: "power3.out"
+        });
+
+        gsap.from(".box", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        gsap.from("a img", {
+            duration: 1,
+            opacity: 0,
+            scale: 0.8,
+            delay: 1,
+            ease: "elastic.out(1, 0.3)"
+        });
+    </script>
+</body>
+</html>

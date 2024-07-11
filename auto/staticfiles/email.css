@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Cover the entire viewport height */
+    width: 100vw; /* Cover the entire viewport width */
+    background-color: #f2f2f2; /* Light gray background */
+    overflow: hidden; /* Hide overflow content */
+}
+
+.container {
+    width: 250px; /* Form width */
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.mail-class {
+    background-color: #f9f9f9; /* Light gray background for form */
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="text"], input[type="password"], textarea, button {
+    margin: 5px 0;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 120px; /* Adjusted form size */
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+textarea {
+    height: 60px; /* Adjust textarea height */
+    resize: none; /* Disable resizing */
+}
+
+button {
+    background-color: #007bff; /* Formal blue color */
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Full width of the container */
+}
+
+button:hover {
+    background-color: #0056b3; /* Darker shade of blue on hover */
+}
+
+img {
+    margin-top: 5px;
+}
+
+.decorative-elements {
+    margin-top: 10px;
+    font-size: 10px;
+}
+
+.decorative-elements img {
+    margin: 0 2px;
+}

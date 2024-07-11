@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Playlists</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            width: 350px;
+            height: 350px;
+            overflow: auto;
+            background-image: linear-gradient(to right, #e0e7ff, #cfdefc); /* Background gradient */
+            background-blur: 5px; /* Blur the background */
+            backdrop-filter: blur(10px); /* Frosted glass effect */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+      .content-container {
+            background: rgba(255, 255, 255, 0.1); /* Semi-transparent white background */
+            border-radius: 15px; /* Rounded corners */
+            padding: 20px;
+            max-width: 90%; /* Adjust based on your preference */
+            width: 350px; /* Fixed width */
+            backdrop-filter: blur(10px); /* Maintain frosted glass effect inside */
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+      .copy-button {
+            cursor: pointer;
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 3px;
+        }
+       .rounded-img {
+            border-radius: 50%; /* Make the image circular */
+            width: 140px; /* Set a fixed width */
+            height: 140px; /* Ensure the image is square */
+            object-fit: cover; /* Cover the area without stretching the image */
+        }
+    </style>
+</head>
+<body>
+    <div class="content-container">
+        <h1>YouTube Playlists</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Channel Name</th>
+                    <th>URL</th>
+                    <th>Copy URL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>To Learn Python</td>
+                    <td>Code With Harry</td>
+                    <td><input type="text" value="https://www.youtube.com/watch?v=7wnove7K-ZQ&list=PLu0W_9lII9agwh1XjRt242xIpHhPT2llg" readonly></td>
+                    <td><button class="copy-button" onclick="copyToClipboard(this)">Copy</button></td>
+                </tr>
+                <tr>
+                    <td>Relaxing Music Playlist</td>
+                    <td>Relax Music Channel</td>
+                    <td><input type="text" value="https://www.youtube.com/watch?v=abcdefg&list=PL1234567890ABCDEF" readonly></td>
+                    <td><button class="copy-button" onclick="copyToClipboard(this)">Copy</button></td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+
+    <section>
+        <div class="-playlist">
+            <a href="https://dev.to/johndoeofficial/100-youtube-channels-for-programmers-20-programming-languages-covered-2pik">
+                <img class="rounded-img" src="https://static.vecteezy.com/system/resources/previews/024/345/302/original/find-out-more-button-free-vector.jpg" alt="Find Out More">
+            </a>
+        </div>
+    </section>
+
+     <a href="{% url 'main' %}">
+        <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30">
+    </a>
+
+    <script>
+        function copyToClipboard(button) {
+            var input = button.parentElement.previousElementSibling.firstElementChild;
+            input.select();
+            input.setSelectionRange(0, 99999); /* For mobile devices */
+            document.execCommand("copy");
+
+            // Optionally, alert the copied text
+            alert("Copied the URL: " + input.value);
+        }
+    </script>
+</body>
+</html>

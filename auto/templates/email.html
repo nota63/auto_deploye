@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Email</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'email.css'%}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            width: 90%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 16px; /* Rounded corners */
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            opacity: 0; /* Initially hidden for animation */
+            transform: scale(0.9); /* Initial scale for animation */
+        }
+        .container.show {
+            opacity: 1;
+        }
+        .mail-class {
+            width: 250px; /* Fixed form width */
+            height: 250px; /* Fixed form height */
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between; /* Distribute space between elements */
+        }
+        .mail-class input,
+        .mail-class textarea,
+        .mail-class button {
+            width: calc(100% - 20px);
+            margin: 5px auto;
+            padding: 10px;
+            border-radius: 8px; /* Rounded corners for form elements */
+            border: 1px solid #ccc;
+        }
+        .mail-class textarea {
+            resize: none; /* Prevent resizing */
+            height: 60px; /* Fixed height for textarea */
+        }
+        .mail-class button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .mail-class button:hover {
+            background-color: #0056b3;
+        }
+        .mail-class button:focus {
+            outline: 2px solid #0056b3; /* Focus outline for accessibility */
+            outline-offset: 2px;
+        }
+        .decorative-elements {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .decorative-elements img {
+            margin: 0 10px;
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h3>Email</h3>
+
+        <section>
+            <div class="mail-class">
+                <form id="emailForm" method="post">
+                    {% csrf_token %}
+                    <input type="text" name="your_email" placeholder="Enter Your Email" required>
+                    <input type="password" name="password" placeholder="Email Password" required>
+                    <input type="text" name="subject" placeholder="Subject" required>
+                    <textarea name="message" placeholder="Enter Message" required></textarea>
+                    <input type="text" name="receiver" placeholder="Receiver's Email" required>
+                    <button type="submit">Send Email</button>
+                </form>
+            </div>
+        </section>
+        <br>
+
+        <div class="decorative-elements">
+            <a href="{% url 'main' %}">
+                <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30">
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script>
+        // GSAP animations
+        document.addEventListener('DOMContentLoaded', () => {
+            // Fade in container with scaling effect
+            gsap.to('.container', { opacity: 1, scale: 1, duration: 1.5, ease: 'power3.out' });
+
+            // Form submission animation
+            const form = document.getElementById('emailForm');
+            form.addEventListener('submit', (event) => {
+                event.preventDefault();
+                gsap.to('.mail-class', { opacity: 0, y: -20, duration: 0.5, ease: 'power3.out', onComplete: submitForm });
+            });
+
+            function submitForm() {
+                form.submit();
+            }
+        });
+    </script>
+</body>
+</html>
+

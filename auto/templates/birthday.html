@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Target</title>
+    {% load static %}
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0; /* Light gray background */
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        form {
+            width: 100%;
+            max-width: 400px; /* Adjust as needed */
+            padding: 20px;
+            background-color: #fff; /* White background */
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+            text-align: center; /* Center text inside the form */
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            color: #333; /* Dark gray text */
+        }
+
+        input[type="text"], input[type="email"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #17a2b8; /* Turquoise */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-out;
+        }
+
+        button:hover {
+            background-color: #117a8b; /* Darker turquoise on hover */
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .back-link img {
+            height: 30px;
+            transition: transform 0.3s ease-out;
+        }
+
+        .back-link:hover img {
+            transform: scale(1.1); /* Scale up image on hover */
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+</head>
+<body>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button type="submit">Save</button>
+    </form>
+    <br>
+    <a href="{% url 'main' %}" class="back-link">
+        <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30" alt="Back">
+    </a>
+
+    <script>
+        // GSAP animations
+        gsap.from("form", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            ease: "power3.out"
+        });
+
+        gsap.from("button", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            delay: 0.5,
+            ease: "power3.out"
+        });
+
+        gsap.from(".back-link", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            delay: 1,
+            ease: "power3.out"
+        });
+    </script>
+</body>
+</html>

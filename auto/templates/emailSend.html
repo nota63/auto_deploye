@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>email_sent</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f2f2f2; /* Light gray background */
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        a img {
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+     <h1>Email Sent Success</h1>
+
+     <a href="{% url 'main' %}">
+        <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30">
+    </a>
+</body>
+</html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Youtube</title>
+    {% load static %}
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa; /* Light gray background */
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            color: #333; /* Dark gray text */
+            margin-bottom: 20px;
+        }
+
+        .youtube {
+            width: 100%;
+            max-width: 400px; /* Adjust as needed */
+            padding: 20px;
+            background-color: #fff; /* White background */
+            border-radius: 20px; /* Rounded corners */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow effect */
+            text-align: center; /* Center text inside the form */
+        }
+
+        .youtube input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px; /* Rounded input */
+        }
+
+        .youtube button {
+            padding: 10px 20px;
+            background-color: #28a745; /* Green background */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 10px; /* Rounded button */
+            cursor: pointer;
+            transition: background-color 0.3s ease-out;
+        }
+
+        .youtube button:hover {
+            background-color: #218838; /* Darker green on hover */
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+        }
+
+        .back-link img {
+            height: 30px;
+            transition: transform 0.3s ease-out;
+            border-radius: 15px; /* Rounded image */
+        }
+
+        .back-link:hover img {
+            transform: scale(1.1); /* Scale up image on hover */
+        }
+
+        .get-playlists {
+            margin: 10px 0;
+        }
+
+        .get-playlists button {
+            padding: 10px 20px;
+            background-color: #007bff; /* Blue background */
+            color: #fff; /* White text */
+            border: none;
+            border-radius: 10px; /* Rounded button */
+            cursor: pointer;
+            transition: background-color 0.3s ease-out;
+        }
+
+        .get-playlists button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+</head>
+<body>
+     <h1>Youtube Playlist</h1>
+
+     <section>
+         <div class="youtube">
+             <form method="post">
+                 {% csrf_token %}
+                 <input type="text" name="yt" placeholder="Enter Url Of Playlist" required>
+                 <br>
+                 <button type="submit">Play</button>
+             </form>
+         </div>
+     </section>
+
+     <br>
+
+     <a href="{% url 'playlists' %}" class="get-playlists">
+         <button type="button">Get Playlists</button>
+     </a>
+     <br>
+
+     <a href="{% url 'main' %}" class="back-link">
+        <img src="https://styles.redditmedia.com/t5_81nasp/styles/communityIcon_nz4zmyjb9a7b1.png" height="30" alt="Back">
+    </a>
+
+    <script>
+        // GSAP animations
+        gsap.from("h1", {
+            duration: 1,
+            opacity: 0,
+            y: -50,
+            ease: "back.out(1.7)"
+        });
+
+        gsap.from(".youtube", {
+            duration: 1,
+            opacity: 0,
+            scale: 0.8,
+            ease: "elastic.out(1, 0.3)",
+            delay: 0.5
+        });
+
+        gsap.from("input[type='text']", {
+            duration: 1,
+            opacity: 0,
+            x: -50,
+            ease: "power3.out",
+            delay: 1
+        });
+
+        gsap.from("button", {
+            duration: 1,
+            opacity: 0,
+            x: 50,
+            ease: "power3.out",
+            delay: 1.5,
+            stagger: 0.2
+        });
+
+        gsap.from(".back-link", {
+            duration: 1,
+            opacity: 0,
+            y: 50,
+            ease: "power3.out",
+            delay: 2
+        });
+    </script>
+</body>
+</html>
